@@ -1,4 +1,4 @@
-@if (count($todos) > 1)
+@if (count($todos) > 0)
     @foreach ($todos as $todo)
         <div class="list-task mb-3 bg-blue-200 p-3">
             <div class="flex justify-between items-center">
