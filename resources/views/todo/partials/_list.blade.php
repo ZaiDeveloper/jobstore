@@ -11,8 +11,9 @@
                     </div>
                 </div>
                 <div class="flex gap-3">
-                    <button class="text-green-700">Edit</button>
-                    <button class="text-red-600">Delete</button>
+                    <button class="btn-edit text-green-700" data-id="{{ $todo['id'] }}"
+                        data-task="{{ $todo['task'] }}">Edit</button>
+                    <button class="btn-delete text-red-600" data-id="{{ $todo['id'] }}">Delete</button>
                 </div>
             </div>
         </div>
