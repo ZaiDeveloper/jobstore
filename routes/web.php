@@ -9,4 +9,5 @@ Route::group([
     'as' => 'todos.'
 ], function () {
     Route::post('/', [TodoController::class, 'store']);
+    Route::put('/{id}', [TodoController::class, 'update']);
 });

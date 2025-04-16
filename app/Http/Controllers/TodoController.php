@@ -35,4 +35,27 @@ class TodoController extends Controller
             'html' => view('todo.partials._list', compact('todos'))->render(),
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'task' => 'required|string|max:255',
+        ]);
+
+        $todos = session('todos', []);
+        foreach ($todos as &$todo) {
+            if ($todo['id'] === $id) {
+                $todo['task'] = $request->task;
+                break;
+            }
+        }
+
+        session(['todos' => $todos]);
+        $todos = array_reverse($todos);
+        return response()->json([
+            'status' => true,
+            'message' => 'Task updated successfully.',
+            'html' => view('todo.partials._list', compact('todos'))->render(),
+        ]);
+    }
 }
