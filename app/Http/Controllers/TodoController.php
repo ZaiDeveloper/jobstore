@@ -58,4 +58,18 @@ class TodoController extends Controller
             'html' => view('todo.partials._list', compact('todos'))->render(),
         ]);
     }
+
+    public function destroy($id)
+    {
+        $todos = session('todos', []);
+        $todos = array_filter($todos, fn($t) => $t['id'] !== $id);
+        session(['todos' => array_values($todos)]);
+
+        $todos = array_reverse($todos);
+        return response()->json([
+            'status' => true,
+            'message' => 'Task deleted.',
+            'html' => view('todo.partials._list', compact('todos'))->render(),
+        ]);
+    }
 }

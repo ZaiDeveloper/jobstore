@@ -10,4 +10,5 @@ Route::group([
 ], function () {
     Route::post('/', [TodoController::class, 'store']);
     Route::put('/{id}', [TodoController::class, 'update']);
+    Route::delete('/{id}', [TodoController::class, 'destroy']);
 });
