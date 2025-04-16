@@ -72,4 +72,10 @@ class TodoController extends Controller
             'html' => view('todo.partials._list', compact('todos'))->render(),
         ]);
     }
+
+    public function reset()
+    {
+        session()->forget('todos');
+        return redirect('/');
+    }
 }
