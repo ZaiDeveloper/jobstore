@@ -28,10 +28,11 @@ class TodoController extends Controller
 
         session(['todos' => $todos]);
 
+        $todos = array_reverse($todos);
         return response()->json([
             'status' => true,
             'message' => 'Task added successfully.',
-            'data' => $todos,
+            'html' => view('todo.partials._list', compact('todos'))->render(),
         ]);
     }
 }
