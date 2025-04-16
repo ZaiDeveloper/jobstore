@@ -76,7 +76,7 @@
                 },
                 success: (response) => {
                     if (response.status) {
-                        $('#new-task').val('');
+                        $('#task').val('');
                         form.find("ul").html('');
                         $('#add-task-box').removeClass('hidden');
                         $('#update-task-box').addClass('hidden');
@@ -109,6 +109,33 @@
             $('.input-task').val(task);
 
             $('#form-update-task').attr('action', '/todos/' + id);
+        });
+
+        $(document).on('click', '.btn-delete', function(e) {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: `/todos/${id}`,
+                method: 'POST',
+                data: {
+                    _method: "delete"
+                },
+                beforeSend: function(request) {
+                    return request.setRequestHeader('X-CSRF-Token', $(
+                        "meta[name='csrf-token']").attr('content'));
+                },
+                success: function(response) {
+                    if (response.status) {
+                        $('#todo-list-box').html(response.html);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(response) {
+                    alert('Something went wrong while deleting.');
+                },
+                complete: function() {}
+            });
         });
     </script>
 @endpush

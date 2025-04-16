@@ -1,6 +1,6 @@
 @if (count($todos) > 1)
     @foreach ($todos as $todo)
-        <div class="mb-3 bg-blue-200 p-3">
+        <div class="list-task mb-3 bg-blue-200 p-3">
             <div class="flex justify-between items-center">
                 <div>
                     <div class="text-lg font-semibold">
