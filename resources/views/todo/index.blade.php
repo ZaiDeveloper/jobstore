@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-gray-100 p-3 lg:max-w-md mx-auto">
+    <div class="bg-gray-100 p-3 md:max-w-md mx-auto">
 
-        <h2 class="mb-6 bg-green-600 text-white p-3">TASK TODO LIST</h2>
+        <h2 id="title" class="mb-6 bg-green-600 text-white p-3">TASK TODO LIST</h2>
 
         <div id="add-task-box" class="bg-white p-3">
             <h2 class="text-gray-600 mb-3 font-semibold">Create Task</h2>
@@ -109,6 +109,10 @@
             $('.input-task').val(task);
 
             $('#form-update-task').attr('action', '/todos/' + id);
+
+            $('html, body').animate({
+                scrollTop: $('#title').offset().top
+            }, 1000);
         });
 
         $(document).on('click', '.btn-delete', function(e) {
