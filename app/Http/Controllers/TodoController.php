@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateRequest;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -13,12 +14,8 @@ class TodoController extends Controller
         return view('todo.index', compact('todos'));
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateRequest $request)
     {
-        $request->validate([
-            'task' => 'required|string|max:255',
-        ]);
-
         $todos = session('todos', []);
         $todos[] = [
             'id' => uniqid(),
@@ -36,12 +33,8 @@ class TodoController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateRequest $request, $id)
     {
-        $request->validate([
-            'task' => 'required|string|max:255',
-        ]);
-
         $todos = session('todos', []);
         foreach ($todos as &$todo) {
             if ($todo['id'] === $id) {
